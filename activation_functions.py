@@ -1,3 +1,5 @@
+import tensorflow as tf
+from tf.distributions.Normal import cdf
 from keras.activations import sigmoid, selu
 
 
@@ -27,7 +29,7 @@ class CustomActivation:
         Returns:
             Tensor, output of 'GELU' activation function
         '''
-        #return 
+        return x * cdf(x)
 
     def Selu(self, x):
         '''Composes Keras' implementation for SELU Activation Function
