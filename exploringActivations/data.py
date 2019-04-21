@@ -10,7 +10,7 @@ from tensorflow import keras
 class Datasets(object):
     img_rows, img_cols = 28, 28
     num_classes = 10
-    def preprocess_dataset(self, x_train, x_test, y_train, y_test):
+    def preprocess_CNN(self, x_train, x_test, y_train, y_test):
 
         """
         preprocesses data
@@ -39,7 +39,29 @@ class Datasets(object):
 
         return x_train, x_test, y_train, y_test
 
-    def get_mnist(self):
+    def preprocess_DNN(self, x_train, x_test, y_train, y_test):
+        """
+
+        :param x_train:
+        :param x_test:
+        :param y_train:
+        :param y_test:
+        :return:
+        """
+        # building the input vector from the 28x28 pixels
+        x_train = x_train.reshape(60000, self.img_cols*self.img_rows)
+        x_test = x_test.reshape(10000, self.img_cols*self.img_rows)
+        x_train = x_train.astype('float32')
+        x_test = x_test.astype('float32')
+        self.input_shape = x_train.shape
+        # normalizing the data to help with the training
+        x_train /= 255
+        x_test /= 255
+        y_train = keras.utils.to_categorical(y_train, self.num_classes)
+        y_test = keras.utils.to_categorical(y_test, self.num_classes)
+        return x_train, x_test, y_train, y_test
+
+    def get_mnist(self, modelname):
 
         """
             Method to return preprocessed fashion mnist dataset
@@ -48,10 +70,9 @@ class Datasets(object):
             A tuple of 4 nparrays is returned
         """
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
-        x_train, x_test, y_train, y_test = self.preprocess_dataset(x_train, x_test, y_train, y_test)
-        return x_train, x_test, y_train, y_test
+        return self.preprocess_data(x_train, x_test, y_train, y_test, modelname)
 
-    def get_fashion_mnist(self):
+    def get_fashion_mnist(self, modelname):
 
         """
         Method to return preprocessed fashion mnist dataset
@@ -60,5 +81,20 @@ class Datasets(object):
            A tuple of 4 nparrays is returned
         """
         (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
-        x_train, x_test, y_train, y_test = self.preprocess_dataset(x_train, x_test, y_train, y_test)
+        return self.preprocess_data(x_train, x_test, y_train, y_test, modelname)
+
+    def preprocess_data(self, x_train, x_test, y_train, y_test, modelname):
+        """
+
+        :param x_train:
+        :param x_test:
+        :param y_train:
+        :param y_test:
+        :param modelname:
+        :return:
+        """
+        if modelname is "CNN":
+            x_train, x_test, y_train, y_test = self.preprocess_CNN(x_train, x_test, y_train, y_test)
+        elif modelname is "DNN":
+            x_train, x_test, y_train, y_test = self.preprocess_DNN(x_train, x_test, y_train, y_test)
         return x_train, x_test, y_train, y_test
