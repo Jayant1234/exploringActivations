@@ -116,7 +116,9 @@ class CAE(DeepModels):
         x = Conv2D(16, (3, 3), activation=self.act_method, padding='same')(x)
         x = UpSampling2D((2, 2))(x)
         decoded = Conv2D(1, (3, 3), activation=self.act_method, padding='same')(x)
-        cae = Model(input_image, decoded)
+        flat = Flatten()(decoded)
+        x = Dense(10, activation='softmax')(flat)
+        cae = Model(input_image, x)
         return cae
 
     def run_model(self, input_shape, x_train, x_test, y_train, y_test):
