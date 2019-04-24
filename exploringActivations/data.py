@@ -49,8 +49,8 @@ class Datasets(object):
         :return:
         """
         # building the input vector from the 28x28 pixels
-        x_train = x_train.reshape(60000, self.img_cols*self.img_rows)
-        x_test = x_test.reshape(10000, self.img_cols*self.img_rows)
+        x_train = x_train.reshape(x_train.shape[0], self.img_cols*self.img_rows)
+        x_test = x_test.reshape(x_test.shape[0], self.img_cols*self.img_rows)
         x_train = x_train.astype('float32')
         x_test = x_test.astype('float32')
         self.input_shape = x_train.shape
