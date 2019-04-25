@@ -29,7 +29,7 @@ class DeepModels:
         pass
 
     def compile_model(self, model):
-        model.compile(loss=keras.losses.categorical_crossentropy,
+        model.compile(loss=keras.losses.sparse_categorical_crossentropy,
                       optimizer=keras.optimizers.Adadelta(),
                       metrics=['accuracy'])
         return model
