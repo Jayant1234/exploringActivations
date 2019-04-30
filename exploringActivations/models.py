@@ -22,8 +22,10 @@ class DeepModels:
             self.act_method = act.Selu
         elif activation_name == "swish":
             self.act_method = act.Swish
-        else:
+        elif activation_name == 'relu':
             self.act_method = 'relu'
+        elif activation_name == 'sigmoid':
+            self.act_method = 'sigmoid'
 
     def define_model(self):
         pass
