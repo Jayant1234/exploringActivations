@@ -15,7 +15,11 @@ This section describes the preqrequisites, and contains instructions, to get the
 ### Usage
  To run the experiments and analyze our code: 
  
- Go to notebooks folder and run the 'Tutorial' jupyter notebook
+ Go to notebooks folder and run the 'Tutorial' jupyter notebook. We have running script written in the notebook. 
+ 
+ OR
+ Run the run.py in given repository.
+
 
 ### Built With
 * [Python](https://www.python.org/)
