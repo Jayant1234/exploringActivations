@@ -13,6 +13,8 @@ from tensorflow.keras.models import Model
 
 
 class DeepModels:
+    """ A generic class for deepModels used. CNN, DNN and CAE inherit this class
+    """
 
     def __init__(self, activation_name="swish"):
         act = CustomActivation()
