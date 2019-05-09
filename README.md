@@ -31,8 +31,6 @@ There are no specific guidelines for contributing, apart from a few general guid
 * Code should follow PEP8 standards as closely as possible
 
 If you see something that could be improved, send a pull request! 
-We are always happy to look at improvements and new experiments, to ensure that `einstein`, as a project, is the best version of itself. 
-
 If you think something should be done differently (or is just-plain-broken), please create an issue.
 
 ## Contributors
